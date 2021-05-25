@@ -4,7 +4,7 @@ import re
 from tinydb import TinyDB, Query
 from bs4 import BeautifulSoup
 from jsondiff import diff
-from pytablewriter import MarkdownTableWriter
+from pytablewriter
 from pytablewriter.style import Style
 from datetime import datetime
 from pytz import timezone
@@ -124,12 +124,12 @@ def create_report_changes(change_matrix):
     amsterdam = timezone('Europe/Amsterdam')
     dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
     table_name = "bikes_changes_report"
-    writer = MarkdownTableWriter(
+    writer = pytablewriter.HtmlTableWriter(
         table_name=table_name ,
         headers=["Bike Name", "SKU", "Updated key", "Old value", "New Value"],
         value_matrix = change_matrix
     )
-    f = open("report/" + table_name + ".md", "w")
+    f = open("report/" + table_name + ".html", "w")
     f.write(writer.dumps())
     f.close()
 
@@ -142,12 +142,12 @@ def create_report_main(db):
         amsterdam = timezone('Europe/Amsterdam')
         dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
         table_name = "bikes_available_report"
-        writer = MarkdownTableWriter(
+        writer =  pytablewriter.HtmlTableWriter(
             table_name=table_name ,
             headers=["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"],
             value_matrix = matrix_data
         )
-        f = open("report/" + table_name + ".md", "w")
+        f = open("report/" + table_name + ".html", "w")
         f.write(writer.dumps())
         f.close()
 
@@ -158,12 +158,12 @@ def create_report_main(db):
         amsterdam = timezone('Europe/Amsterdam')
         dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
         table_name = "bikes_not_available_report"
-        writer = MarkdownTableWriter(
+        writer =  pytablewriter.HtmlTableWriter(
             table_name= table_name,
             headers=["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"],
             value_matrix = matrix_data
         )
-        f = open("report/" + table_name + ".md", "w")
+        f = open("report/" + table_name + ".html", "w")
         f.write(writer.dumps())
         f.close()
         
