@@ -36,6 +36,7 @@ jobs:
           pip install pytz
           pip install markdown
           pip install jsondiff
+          pip install pytablewriter[html]
           
       - name: Run script
         run: python ./main.py
