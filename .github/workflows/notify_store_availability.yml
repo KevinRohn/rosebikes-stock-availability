@@ -64,5 +64,6 @@ jobs:
           from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
-          #convert_markdown: true
-          attachments: report/*.md
+          body: Test
+          convert_markdown: true
+          attachments: report/bikes_available_report.md
