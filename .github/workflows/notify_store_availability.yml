@@ -39,3 +39,11 @@ jobs:
           
       - name: Run script
         run: python ./main.py
+        
+      - name: Update files on GitHub
+        uses: test-room-7/action-update-file@v1.5.0
+        with:
+          file-path: db/db.json
+          commit-msg: updated database
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
