@@ -56,7 +56,7 @@ jobs:
       - name: convert MD Files
         run: |
           cat report/bikes_available_report.md | python -m markdown > report/bikes_available_report.html
-      
+          cat report/bikes_available_report.html
       - name: Send email
         uses: dawidd6/action-send-mail@v3.1.0
         with:
@@ -68,6 +68,6 @@ jobs:
           from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
-          body: cat report/bikes_available_report.md
-          convert_markdown: true
+          html_body: file://report/bikes_available_report.html
+          #convert_markdown: true
           #attachments: report/bikes_available_report.md
