@@ -61,6 +61,7 @@ jobs:
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: ROSEBIKES - Change
+          from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
           #convert_markdown: true
