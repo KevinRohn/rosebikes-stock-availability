@@ -50,5 +50,5 @@ jobs:
       - name: upload reports
         uses: actions/upload-artifact@v2
         with:
-          name: homework
+          name: report
           path: report/*.md
