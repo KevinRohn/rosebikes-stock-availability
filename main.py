@@ -122,7 +122,7 @@ def check_for_update(query_item, db_item):
 
 def create_report_changes(change_matrix):
     amsterdam = timezone('Europe/Amsterdam')
-    dateTimeObj = datetime.now(amsterdam)
+    dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
     table_name = "bikes_changes_report_" + str(dateTimeObj)
     writer = MarkdownTableWriter(
         table_name=table_name ,
@@ -140,7 +140,7 @@ def create_report_main(db):
         matrix_data = format_to_matrix(result)
 
         amsterdam = timezone('Europe/Amsterdam')
-        dateTimeObj = datetime.now(amsterdam)
+        dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
         table_name = "bikes_available_report_" + str(dateTimeObj)
         writer = MarkdownTableWriter(
             table_name=table_name ,
@@ -156,7 +156,7 @@ def create_report_main(db):
         matrix_data = format_to_matrix(result)
         
         amsterdam = timezone('Europe/Amsterdam')
-        dateTimeObj = datetime.now(amsterdam)
+        dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
         table_name = "bikes_not_available_report_" + str(dateTimeObj)
         writer = MarkdownTableWriter(
             table_name= table_name,
