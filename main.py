@@ -4,8 +4,7 @@ import re
 from tinydb import TinyDB, Query
 from bs4 import BeautifulSoup
 from jsondiff import diff
-from pytablewriter
-from pytablewriter.style import Style
+import pytablewriter
 from datetime import datetime
 from pytz import timezone
 
