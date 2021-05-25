@@ -35,7 +35,7 @@ jobs:
           pip install pytablewriter
           pip install pytz
           pip install markdown
-          pip install diff
+          pip install jsondiff
           
       - name: Run script
         run: python ./main.py
