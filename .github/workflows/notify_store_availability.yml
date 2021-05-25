@@ -68,6 +68,6 @@ jobs:
           from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
-          html_body: file://report/bikes_available_report.html
-          convert_markdown: false
+          body: file://report/bikes_available_report.html
+          convert_markdown: true
           #attachments: report/bikes_available_report.md
