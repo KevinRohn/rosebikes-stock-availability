@@ -123,13 +123,18 @@ def create_report_changes(change_matrix):
     amsterdam = timezone('Europe/Amsterdam')
     dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
     table_name = "bikes_changes_report"
-    writer = pytablewriter.HtmlTableWriter(
-        table_name=table_name ,
-        headers=["Bike Name", "SKU", "Updated key", "Old value", "New Value"],
-        value_matrix = change_matrix
-    )
+
+    writer = pytablewriter.HtmlTableWriter()
+    writer.table_name = table_name
+    writer.headers = ["Bike Name", "SKU", "Updated key", "Old value", "New Value"]
+    writer.value_matrix = change_matrix
+    #writer = pytablewriter.HtmlTableWriter(
+    #    table_name=table_name ,
+    #    headers=["Bike Name", "SKU", "Updated key", "Old value", "New Value"],
+    #    value_matrix = change_matrix
+    #)
     f = open("report/" + table_name + ".html", "w")
-    f.write(writer.dumps())
+    f.write(writer.write_table())
     f.close()
 
 def create_report_main(db):
@@ -141,13 +146,20 @@ def create_report_main(db):
         amsterdam = timezone('Europe/Amsterdam')
         dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
         table_name = "bikes_available_report"
-        writer =  pytablewriter.HtmlTableWriter(
-            table_name=table_name ,
-            headers=["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"],
-            value_matrix = matrix_data
-        )
+
+        writer = pytablewriter.HtmlTableWriter()
+        writer.table_name = table_name
+        writer.headers = ["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"]
+        writer.value_matrix = matrix_data
+
+        #writer =  pytablewriter.HtmlTableWriter(
+        #    table_name=table_name ,
+        #    headers=["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"],
+        #    value_matrix = matrix_data
+        #)
+
         f = open("report/" + table_name + ".html", "w")
-        f.write(writer.dumps())
+        f.write(writer.write_table())
         f.close()
 
     result = db.search(Bike.stock_availability == "N/A")
@@ -157,13 +169,19 @@ def create_report_main(db):
         amsterdam = timezone('Europe/Amsterdam')
         dateTimeObj = datetime.now(amsterdam).strftime("%m-%d-%Y-%H-%M-%S")
         table_name = "bikes_not_available_report"
-        writer =  pytablewriter.HtmlTableWriter(
-            table_name= table_name,
-            headers=["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"],
-            value_matrix = matrix_data
-        )
+
+        writer = pytablewriter.HtmlTableWriter()
+        writer.table_name = table_name
+        writer.headers = ["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"]
+        writer.value_matrix = matrix_data
+
+        #writer =  pytablewriter.HtmlTableWriter(
+        #    table_name= table_name,
+        #    headers=["Bike Name", "SKU", "Color", "Price", "Lieferzeit", "URL"],
+        #    value_matrix = matrix_data
+        #)
         f = open("report/" + table_name + ".html", "w")
-        f.write(writer.dumps())
+        f.write(writer.write_table())
         f.close()
         
 
