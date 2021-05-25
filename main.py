@@ -134,7 +134,7 @@ def create_report_changes(change_matrix):
     #    value_matrix = change_matrix
     #)
     f = open("report/" + table_name + ".html", "w")
-    f.write(writer.write_table())
+    f.write(writer.dumps())
     f.close()
 
 def create_report_main(db):
@@ -159,7 +159,7 @@ def create_report_main(db):
         #)
 
         f = open("report/" + table_name + ".html", "w")
-        f.write(writer.write_table())
+        f.write(writer.dumps())
         f.close()
 
     result = db.search(Bike.stock_availability == "N/A")
@@ -181,7 +181,7 @@ def create_report_main(db):
         #    value_matrix = matrix_data
         #)
         f = open("report/" + table_name + ".html", "w")
-        f.write(writer.write_table())
+        f.write(writer.dumps())
         f.close()
         
 
