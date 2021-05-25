@@ -52,3 +52,16 @@ jobs:
         with:
           name: report
           path: report/*.md
+      
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3.1.0
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: ROSEBIKES - Change
+          to: k.rohn@outlook.de
+          secure: true
+          #convert_markdown: true
+          attachments: report/*.md
