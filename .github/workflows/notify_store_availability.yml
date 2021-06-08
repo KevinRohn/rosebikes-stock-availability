@@ -60,7 +60,7 @@ jobs:
       - name: Merge HTML files
         uses: maxheld83/pandoc-action@v2
         with:
-          args: "--standalone --output=report/index.html report/*.html"
+          args: "--standalone report/*.html --output=index.html"
 
       - name: Send email
         if: steps.check_stock_availability.outputs.bike_changes_available == 'true'
@@ -74,7 +74,7 @@ jobs:
           from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
-          html_body: file://report/index.html
+          html_body: file://index.html
           #convert_markdown: true
           #attachments: report/bikes_available_report.md
 
