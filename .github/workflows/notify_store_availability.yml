@@ -57,10 +57,15 @@ jobs:
         with:
           files: "report/bikes_changes_report.html"
 
+      # List file names
+      - name: Get file names for merge process
+        run: echo "::set-env name=HTML_FILES::$(printf '"%s" ' report/*.html)"
+
+      # Convert using pandoc (https://github.com/pandoc/pandoc-action-example)
       - name: Merge HTML files
-        uses: maxheld83/pandoc-action@v2
+        uses: docker://pandoc/latex:2.9
         with:
-          args: "--standalone report/*.html --output=index.html"
+          args:  "--standalone --output=report/merged_report.html ${{ env.FILELIST }}"
 
       - name: Send email
         if: steps.check_stock_availability.outputs.bike_changes_available == 'true'
@@ -74,7 +79,7 @@ jobs:
           from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
-          html_body: file://index.html
+          html_body: file://report/merged_report.html
           #convert_markdown: true
           #attachments: report/bikes_available_report.md
 
