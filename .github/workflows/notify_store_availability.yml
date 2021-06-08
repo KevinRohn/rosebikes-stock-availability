@@ -51,21 +51,23 @@ jobs:
           commit-msg: updated database
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check for new stock availability changes
+      # check if there is a change report file available 
+      - name: Check if change report file exists
         id: bike_changes_available
         uses: andstor/file-existence-action@v1.0.1
         with:
           files: "report/bikes_changes_report.html"
 
-      # List file names
+      # List file names in report folder (asteric * is not supported in pandoc arguments - workaround)
       - name: Get file names for merge process
-        run: echo "::set-env name=HTML_FILES::$(printf '"%s" ' report/*.html)"
+        id: files_list
+        run: echo "::set-output name=report_names::$(printf '"%s" ' report/*.html)"
 
       # Convert using pandoc (https://github.com/pandoc/pandoc-action-example)
       - name: Merge HTML files
         uses: docker://pandoc/latex:2.9
         with:
-          args:  "--standalone --output=report/merged_report.html ${{ env.FILELIST }}"
+          args:  "--standalone --output=report/merged_report.html ${{ steps.files_list.outputs.report_names }}"
 
       - name: Send email
         if: steps.check_stock_availability.outputs.bike_changes_available == 'true'
