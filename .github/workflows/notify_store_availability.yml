@@ -53,7 +53,7 @@ jobs:
 
       # check if there is a change report file available 
       - name: Check if change report file exists
-        id: bike_changes_available
+        id: bikes_changes_available
         uses: andstor/file-existence-action@v1.0.1
         with:
           files: "report/bikes_changes_report.html"
@@ -70,7 +70,7 @@ jobs:
           args:  "--standalone --output=report/merged_report.html ${{ steps.files_list.outputs.report_names }}"
 
       - name: Send email
-        if: steps.check_stock_availability.outputs.bike_changes_available == 'true'
+        if: steps.bikes_changes_available.outputs.files_exists == 'true'
         uses: dawidd6/action-send-mail@v3.1.0
         with:
           server_address: smtp.gmail.com
