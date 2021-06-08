@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Check store availability
 
 # Controls when the action will run. 
@@ -10,15 +8,18 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  check_stock_availability:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Cleanup workspace path
+      - name: Cleanup workspace path
+        uses: mickem/clean-after-action@v1
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
@@ -37,10 +38,12 @@ jobs:
           pip install markdown
           pip install jsondiff
           pip install pytablewriter[html]
-          
+        
+      # run the bike store availability check
       - name: Run script
         run: python ./main.py
-        
+      
+      # commit the modified database to the main branch
       - name: Update files on GitHub
         uses: test-room-7/action-update-file@v1.5.0
         with:
@@ -48,13 +51,19 @@ jobs:
           commit-msg: updated database
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: upload reports
-        uses: actions/upload-artifact@v2
+      - name: Check for new stock availability changes
+        id: bike_changes_available
+        uses: andstor/file-existence-action@v1.0.1
         with:
-          name: report
-          path: report/*.html
+          files: "report/bikes_changes_report.html"
+
+      - name: Merge HTML files
+        uses: maxheld83/pandoc-action@v2
+        with:
+          args: "--standalone --output=report/index.html report/*.html"
 
       - name: Send email
+        if: steps.check_stock_availability.outputs.bike_changes_available == 'true'
         uses: dawidd6/action-send-mail@v3.1.0
         with:
           server_address: smtp.gmail.com
@@ -65,6 +74,12 @@ jobs:
           from: ${{secrets.MAIL_USERNAME}}
           to: k.rohn@outlook.de
           secure: true
-          html_body: file://report/bikes_available_report.html
+          html_body: file://report/index.html
           #convert_markdown: true
           #attachments: report/bikes_available_report.md
+
+      - name: upload reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: report/*.html
