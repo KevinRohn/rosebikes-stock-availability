@@ -2,7 +2,7 @@
 
 Rosebikes stock availability checker tool. To get notified from stock availability and price changes. I hope this tool helps you to get an rose bike as fast as possible.
 
-It started from a personal weekend project to get an rosebike befor the sommer of 2021 ends :).
+It started from a personal weekend project to get an rosebike before the sommer of 2021 ends :).
 
 ## Introduction
 
@@ -18,7 +18,13 @@ So you can register an account and get notified if the bike is available again.
 
 ![Bike stock availability notification function](assets/screen_1.png)
 
+---
+**Prbolem**
+
 The button notification never worked for me. And believe me, I visited the site several times a day and checked the availability of the bike.
+
+---
+
 
 ### Stock availability observations
 
