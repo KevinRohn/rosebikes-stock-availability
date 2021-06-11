@@ -18,12 +18,8 @@ So you can register an account and get notified if the bike is available again.
 
 ![Bike stock availability notification function](assets/screen_1.png)
 
----
-**Prbolem**
+> **_SUMMARY:_**  The button notification never worked for me. And believe me, I visited the site several times a day and checked the availability of the bike.
 
-The button notification never worked for me. And believe me, I visited the site several times a day and checked the availability of the bike.
-
----
 
 
 ### Stock availability observations
