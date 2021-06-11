@@ -15,7 +15,8 @@ The problem, however, is that the Rosebike bikes, especially the Gravel bike typ
 
 On the website there is also an notification registration button.
 So you can register an account and get notified if the bike is available again.
-![Bike stock availability notification function](assets/screen_1.png.jpg)
+
+![Bike stock availability notification function](assets/screen_1.png)
 
 The button notification never worked for me. And believe me, I visited the site several times a day and checked the availability of the bike.
 
