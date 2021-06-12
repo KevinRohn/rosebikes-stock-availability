@@ -6,9 +6,8 @@ It started from a personal weekend project to get an rosebike before the sommer 
 
 > **_NOTE:_**  It`s and quick and dirty weekend project, which just works. There is a lot of ugly hardcoded stuff.
 
-<br/>
 
-## 💡 Introduction
+## **💡 Introduction**
 
 This project was born out of necessity. For two years I would like to finally buy a good bike. However, due to little time and different projects I have always postponed this. 
 Through the current COVID-19 situation has then arisen the urge to have to quickly buy a bike.
@@ -25,12 +24,28 @@ So you can register an account and get notified if the bike is available again.
 
 ![Bike stock availability notification function](assets/screen_1.png)
 
-
 ### Stock availability observations
 
 During the many visits I have observed that the delivery time specifications have changed several times. For example, sometimes a bike was available in 3 weeks and other times not for another 26 weeks. This led to the idea for this project. 
 
-<br/>
+The program checks the availability of the selected bikes at a specified interval. It checks if there is a change in the delivery time or availability, as well as the price. If there is a change, a report is generated, which contains the changes. The report is then sent via mail.
 
-## ⚙️ Functionality 
+![Mail report](assets/screen_2.png)
+
+## ⚙️ **Usage**
+
+**_1. Define the desired bikes_**
+
+Add the bikes you want to observate to the `bike_types.json` file.
+Use following format:
+
+```
+    {
+        "type_url": "rose-backroad-al-grx-rx400-2686987",
+        "color": "fog+grey",
+        "size": "57cm"
+    }
+```
+
+![Mail report](assets/screen_3-edit.png)
 
