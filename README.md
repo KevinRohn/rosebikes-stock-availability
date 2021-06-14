@@ -98,5 +98,20 @@ on:
 > **_NOTE:_** Please do not use too short time request cycles to keep the server requests as low as possible. 
 > Be aware that the execution time will reduce your free Github Action Runner minutes if you use public runner instances. Check the following link for more information: https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions
 
+**_Website language_**
+I only used the german website for the `rosebikes-stock-availability` checker tool. If you want to use it for the international website, just change the variable `mainurl` from `mainurl = "https://www.rosebikes.de"` to `mainurl = "https://www.rosebikes.com"`.
 
-> **_NOTE:_** I only used the german website for the `rosebikes-stock-availability` tool. If you want it to use for the international site just, change the variable `mainurl` from `mainurl = "https://www.rosebikes.de"` to `mainurl = "https://www.rosebikes.com"`.
+## Comparison of the data sets
+To check if there has been a change since the last check, a simple file based database is used.
+The database is update during the execution of the `rosebikes-stock-availability` checker tool.
+The database is also stored to the main branch and is re-commited during the execution process.
+```yml
+      # commit the modified database to the main branch
+      - name: Update files on GitHub
+        uses: test-room-7/action-update-file@v1.5.0
+        with:
+          file-path: db/db.json
+          commit-msg: updated database
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
