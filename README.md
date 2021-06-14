@@ -16,7 +16,7 @@ The problem, however, is that the Rosebike bikes, especially the Gravel bike typ
 
 ### Why I did not use the notification function on the website
 
-On the website there is also a notification registration button.
+On the website, there is also a notification registration button.
 So you can register an account and get notified if the bike is available again.
 
 
@@ -57,6 +57,7 @@ Just navigate to the sites and extract the URL as shown in the image.
 Github Actions is used to execute the tool and also to send notifications.
 
 ```yml
+# ...
  - name: Send email
         if: steps.bikes_changes_available.outputs.files_exists == 'true'
         uses: dawidd6/action-send-mail@v3.1.0
@@ -70,6 +71,7 @@ Github Actions is used to execute the tool and also to send notifications.
           to: ${{secrets.MAIL_USERNAME}}
           secure: true
           html_body: file://report/merged_report.html
+# ...
 ```
 
 I personaly use gmail to send and receive the email notifications. I strongly recommend to use app passwords instead of your master password!
@@ -83,7 +85,18 @@ https://support.google.com/accounts/answer/185833?p=app_passwords_sa&hl=en
 
 **_Check interval time_**
 
+The check is executed every hour. It can be changed, by modifing the cron execution configuration.
 
+```yml
+# ...
+on:
+  schedule:
+  - cron: "0 0-23 * * *"
+# ...
+```
+
+> **_NOTE:_** Please do not use too short time request cycles to keep the server requests as low as possible. 
+> Be aware that the execution time will reduce your free Github Action Runner minutes if you use public runner instances. Check the following link for more information: https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions
 
 
 > **_NOTE:_** I only used the german website for the `rosebikes-stock-availability` tool. If you want it to use for the international site just, change the variable `mainurl` from `mainurl = "https://www.rosebikes.de"` to `mainurl = "https://www.rosebikes.com"`.
