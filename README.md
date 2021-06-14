@@ -1,13 +1,13 @@
 # 🚲 Rose bikes stock availability checker 
 
-Rosebikes stock availability checker tool. To get notified of stock availability and price changes. I hope this tool helps you to get a rose bike as fast as possible.
+Rosebikes stock availability checker tool is a small application which runs completly on github actions to get notified of stock availability and price changes. 
 
 It started from a personal weekend project to get a rosebike before the summer of 2021 ends :). 
 
-> **_NOTE:_**  It`s a quick and dirty weekend project, which just works. There is a lot of ugly hardcoded stuff.
+> **_NOTE:_**  It`s a quick and dirty weekend project, which just works. There is a lot of ugly hardcoded stuff. So feel free to improve it and contribute to it.
 
 
-## **💡 Introduction**
+## **💡 Background story**
 
 This project was born out of necessity. For two years I would like to finally buy a good bike. However, due to little time and different projects I have always postponed this. 
 Through the current COVID-19 situation has then arisen the urge to have to quickly buy a bike.
@@ -34,7 +34,8 @@ The program checks the availability of the selected bikes at a specified interva
 
 ## ⚙️ **Usage**
 
-The `rosebikes-stock-availability` checker tool needs to be configured.
+The `rosebikes-stock-availability` checker tool can be configured for your personal usage.
+Just fork the project and run it on Github Action runners.
 
 **_1. Define the desired bikes_**
 
@@ -54,7 +55,6 @@ Just navigate to the sites and extract the URL as shown in the image.
 **_2. Set up report notifications_**
 
 Github Actions is used to execute the tool and also to send notifications.
-
 
 ```yml
  - name: Send email
@@ -77,6 +77,12 @@ I personaly use gmail to send and receive the email notifications. I strongly re
 https://support.google.com/accounts/answer/185833?p=app_passwords_sa&hl=en
 
 > **_ATTENTION:_**  Use Github Secrets for sensitive information like username, and password!
+> !['Github Repositority secrets'](assets/screen_4.png)
+
+### **Optional configurations**
+
+**_Check interval time_**
+
 
 
 
